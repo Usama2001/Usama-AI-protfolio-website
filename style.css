@@ -358,4 +358,22 @@ body {
     .theme-toggle {
         margin-left: 1rem;
     }
+
+
+/
+/* ustom icons styling */
+.cert-icon {
+    margin-right: 0.5rem;
+    color: var(--accent-color);
+}
+
+.contact-icon {
+    margin-right: 0.5rem;
+    color: var(--accent-color);
+}
+
+/* Ensure project card text is visible in dark sections */
+.dark-section .project-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #f5f5f5;
 }
