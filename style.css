@@ -361,7 +361,263 @@ body {
 
 
 /
-/* ustom icons styling */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usama Fiaz – AI &amp; ML Engineer</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for icons (LinkedIn, Email, certifications) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-HoO5T+E8iJp8UhHtZlyjXStKVk/miP/62nCgGdL0c6vEyK1bQ4vI9riFeawjR6em3tMPCJ9I5MHkRLfUIwofTg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">Usama Fiaz</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="theme-toggle" id="themeToggle">🌙</div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Hi, I'm <span class="accent">Usama Fiaz</span></h1>
+                <h2>AI &amp; ML Engineer</h2>
+                <p>
+                    Machine Learning / AI Engineer with hands‑on professional experience in SQL, Python-based data
+                    workflows, data validation, and application support at Techlogix. Passionate about ML and AI,
+                    currently self‑learning and working on projects that revolve around prompt engineering, data
+                    preparation, automation and LLM workflows.
+                </p>
+                <a href="#projects" class="btn">View Projects</a>
+                <!-- Quick access social icons (email and LinkedIn) under the call‑to‑action button -->
+                <div class="social-icons">
+                    <a href="mailto:usama20010101@gmail.com" target="_blank" title="Send me an email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/usama2001" target="_blank" rel="noopener" title="Visit my LinkedIn profile">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="profile.png" alt="Usama Fiaz">
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>
+                I am a Machine Learning / AI Engineer candidate with solid experience in SQL and Python. At
+                Techlogix, I work on SQL‑driven enterprise applications, focusing on data extraction and
+                reconciliation using Oracle SQL/PLSQL. I'm dedicated to continuous learning and have completed
+                multiple AI/ML certifications. I enjoy building ML workflows and exploring practical NLP use cases,
+                from intent detection and text classification to summarization and AI agents.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2>Core Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <h3>Machine Learning</h3>
+                    <p>Supervised Learning, Regression, Classification, Model Evaluation, Feature Engineering,
+                        Predictive Modeling</p>
+                </div>
+                <div class="skill-item">
+                    <h3>NLP &amp; LLMs</h3>
+                    <p>Intent Detection, Text Classification, Summarization, Prompt Engineering, RAG Concepts, AI
+                        Agents, LangGraph</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Fine‑Tuning Exposure</h3>
+                    <p>TensorFlow, Hugging Face, LoRA/QLoRA, LLaMA/Mistral Familiarity, Dataset Preparation</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Data Engineering</h3>
+                    <p>SQL, Oracle SQL/PLSQL, ETL Concepts, Data Cleaning, Data Validation, Data Pipelines, Reporting</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Programming &amp; Tools</h3>
+                    <p>Python, Pandas, NumPy, Matplotlib, Power BI, Excel, Git, APIs, Automation Workflows</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section dark-section">
+        <div class="container">
+            <h2>Selected Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Prompt Engineering &amp; AI Agents</h3>
+                    <p>Developed prompt‑based workflows and AI agent concepts for structured task automation,
+                        information extraction and response generation.</p>
+                </div>
+                <div class="project-card">
+                    <h3>NLP Classification &amp; Summarization</h3>
+                    <p>Worked on text preprocessing, classification logic and summarization tasks to implement practical
+                        NLP pipelines with LLMs.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Data Cleaning &amp; Analytics Automation</h3>
+                    <p>Built Python and SQL workflows to clean datasets, transform records, validate outputs and
+                        generate reporting‑ready data.</p>
+                </div>
+                <div class="project-card">
+                    <h3>ML Model Practice</h3>
+                    <p>Created supervised learning models for regression and classification, focusing on model
+                        performance, evaluation metrics and interpretability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2>Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Application Consultant</h3>
+                        <span class="time">Techlogix | May 2024 – Present | Lahore, Pakistan</span>
+                        <ul>
+                            <li>Write and optimize Oracle SQL/PLSQL queries for data extraction, validation and reconciliation.</li>
+                            <li>Support ETL-style data movement, mapping and transformation across enterprise systems.</li>
+                            <li>Collaborate with technical and functional teams to debug issues, prepare fixes and test changes.</li>
+                            <li>Apply automation-focused thinking to reduce manual checks and improve data validation workflows.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                       <h3>Freelance AI, ML &amp; Data Projects</h3>
+                        <span class="time">Self‑Employed | 2021 – Present | Remote</span>
+                        <ul>
+                            <li>Develop Python-based projects for data cleaning, analysis, automation, dashboards and ML experimentation.</li>
+                            <li>Practice ML workflows including dataset preparation, feature selection, classification, regression and model evaluation.</li>
+                            <li>Explore NLP and LLM use cases such as prompt engineering, text classification, summarization and AI agents.</li>
+                            <li>Work with GenAI concepts like Retrieval Augmented Generation (RAG) and LangGraph‑based agents.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="section dark-section">
+        <div class="container">
+            <h2>Certifications</h2>
+            <ul class="cert-list">
+                <!-- Micro1 certification: show icon without link -->
+                <li>
+                    <!-- Unlinked icon for Micro1 certification -->
+                    <span class="cert-icon"><i class="fas fa-microchip" aria-hidden="true"></i></span>
+                    <span>Micro1 – Certified AI Engineer, Sep&nbsp;2025</span>
+                </li>
+                <!-- Advanced Machine Learning: show icon without link -->
+                <li>
+                    <span class="cert-icon"><i class="fas fa-brain" aria-hidden="true"></i></span>
+                    <span>Advanced Machine Learning – DeepLearning.AI</span>
+                </li>
+                <!-- ChatGPT Prompt Engineering: icon links to certificate page -->
+                <li>
+                    <a href="https://learn.deeplearning.ai/accomplishments/2c77cfe1-b6f2-429a-a809-b45db0c26c36?usp=sharing" target="_blank" rel="noopener" class="cert-icon" title="View certificate">
+                        <i class="fas fa-comment-dots" aria-hidden="true"></i>
+                    </a>
+                    <span>ChatGPT Prompt Engineering for Developers</span>
+                </li>
+                <!-- Supervised Machine Learning: icon links to certificate page -->
+                <li>
+                    <a href="https://learn.deeplearning.ai/certificates/1f9d08b7-58db-4319-85fb-fe9a8b763de4?usp=sharing" target="_blank" rel="noopener" class="cert-icon" title="View certificate">
+                        <i class="fas fa-chart-line" aria-hidden="true"></i>
+                    </a>
+                    <span>Supervised Machine Learning: Regression and Classification</span>
+                </li>
+                <!-- HackerRank certification: icon links to certificate page -->
+                <li>
+                    <a href="https://www.hackerrank.com/profile/usama20010101" target="_blank" rel="noopener" class="cert-icon" title="View certificate">
+                        <i class="fab fa-hackerrank" aria-hidden="true"></i>
+                    </a>
+                    <span>HackerRank – Verified Software Engineer</span>
+                </li>
+            </ul>
+       </body>
+       </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="container">
+            <h2>Education</h2>
+            <div class="education-item">
+                <h3>BSc Computer Engineering</h3>
+                <p>University of Engineering and Technology (UET), Lahore | Sep 2020 – Jun 2024</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section dark-section">
+        <div class="container">
+            <h2>Contact</h2>
+            <p>If you'd like to get in touch, feel free to reach out via email or LinkedIn.</p>
+            <ul class="contact-list">
+                <li>
+                    <a href="mailto:usama20010101@gmail.com" class="contact-icon" title="Send me an email">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/in/usama2001" target="_blank" rel="noopener" class="contact-icon" title="Visit my LinkedIn profile">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                </li>
+                <li>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Lahore, Pakistan</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Usama Fiaz. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>/<!-- Contact Section
+* ustom icons styling */
 .cert-icon {
     margin-right: 0.5rem;
     color: var(--accent-color);
