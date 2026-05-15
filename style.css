@@ -1,644 +1,1143 @@
-/* Base styles */
+:root {
+  color-scheme: dark;
+  --bg: #0b0d18;
+  --bg-strong: #070812;
+  --surface: rgba(18, 22, 38, 0.88);
+  --surface-solid: #141827;
+  --surface-raised: #1b2033;
+  --text: #f7f8ff;
+  --muted: #b9c0d6;
+  --subtle: #7e89a8;
+  --border: rgba(255, 255, 255, 0.13);
+  --accent: #65e4ff;
+  --accent-strong: #8f7cff;
+  --accent-hot: #ff5c7a;
+  --accent-warm: #ffbe55;
+  --accent-green: #5cf0aa;
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+  --max: 1180px;
+}
+
+body.theme-light {
+  color-scheme: light;
+  --bg: #f7f9fc;
+  --bg-strong: #ffffff;
+  --surface: rgba(255, 255, 255, 0.92);
+  --surface-solid: #ffffff;
+  --surface-raised: #f0f4fa;
+  --text: #111827;
+  --muted: #475569;
+  --subtle: #64748b;
+  --border: rgba(15, 23, 42, 0.14);
+  --accent: #006bb8;
+  --accent-strong: #604ee8;
+  --accent-hot: #c7254e;
+  --accent-warm: #9b6500;
+  --accent-green: #047857;
+  --shadow: 0 24px 70px rgba(37, 47, 74, 0.16);
+}
+
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
-}
-
-:root {
-    --bg-color: #ffffff;
-    --text-color: #121212;
-    --accent-color: #6c63ff;
-    --section-bg: #f5f5f5;
-    --dark-bg: #121212;
-    --dark-text: #f5f5f5;
-    --dark-section-bg: #1e1e1e;
-}
-
-body.dark {
-    --bg-color: var(--dark-bg);
-    --text-color: var(--dark-text);
-    --section-bg: var(--dark-section-bg);
+  scroll-behavior: smooth;
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    line-height: 1.6;
+  margin: 0;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(145deg, var(--bg-strong), var(--bg));
+  background-size: 74px 74px, 74px 74px, auto;
+  color: var(--text);
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  line-height: 1.6;
+  letter-spacing: 0;
+  min-height: 100vh;
 }
 
-/* Container */
-.container {
-    width: 90%;
-    max-width: 1100px;
-    margin: 0 auto;
+body.theme-light {
+  background:
+    linear-gradient(90deg, rgba(34, 73, 112, 0.055) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(34, 73, 112, 0.055) 1px, transparent 1px),
+    linear-gradient(145deg, #ffffff, #eff5fb);
+  background-size: 74px 74px, 74px 74px, auto;
 }
 
-/* Navbar */
-.navbar {
-    background-color: var(--bg-color);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(115deg, rgba(143, 124, 255, 0.18), transparent 34%),
+    linear-gradient(245deg, rgba(101, 228, 255, 0.12), transparent 30%),
+    linear-gradient(0deg, rgba(255, 92, 122, 0.08), transparent 42%);
+  pointer-events: none;
 }
 
-.nav-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 0;
+body.theme-light::before {
+  background:
+    linear-gradient(115deg, rgba(96, 78, 232, 0.09), transparent 34%),
+    linear-gradient(245deg, rgba(0, 107, 184, 0.08), transparent 30%),
+    linear-gradient(0deg, rgba(255, 190, 85, 0.08), transparent 42%);
 }
 
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--accent-color);
+a {
+  color: inherit;
 }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
+img,
+svg,
+canvas {
+  display: block;
 }
 
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: 500;
-    transition: color 0.3s ease;
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
-.nav-links a:hover {
-    color: var(--accent-color);
+button {
+  font: inherit;
 }
 
-.theme-toggle {
-    cursor: pointer;
-    font-size: 1.2rem;
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 50;
+  transform: translateY(-140%);
+  background: var(--text);
+  color: var(--bg);
+  padding: 10px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: transform 160ms ease;
 }
 
-/* Hero Section */
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  border-bottom: 1px solid var(--border);
+  background: rgba(7, 8, 18, 0.76);
+  backdrop-filter: blur(18px);
+}
+
+body.theme-light .site-header {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.nav-shell {
+  width: min(calc(100% - 32px), var(--max));
+  min-height: 76px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 22px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  min-width: 190px;
+}
+
+.brand-mark {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(101, 228, 255, 0.58);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(101, 228, 255, 0.16), rgba(255, 92, 122, 0.14));
+  color: var(--text);
+  font-weight: 800;
+}
+
+.brand-copy {
+  display: grid;
+  gap: 1px;
+}
+
+.brand-copy span {
+  font-weight: 800;
+}
+
+.brand-copy small {
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+.nav-panel {
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+body.theme-light .nav-panel {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.nav-panel a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 9px 12px;
+  border-radius: 6px;
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.nav-panel a:hover,
+.nav-panel a:focus-visible {
+  color: var(--text);
+  background: rgba(101, 228, 255, 0.11);
+  outline: none;
+}
+
+.nav-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-link,
+.theme-toggle,
+.nav-toggle {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--text);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+body.theme-light .icon-link,
+body.theme-light .theme-toggle,
+body.theme-light .nav-toggle {
+  background: #ffffff;
+}
+
+.icon-link:hover,
+.theme-toggle:hover,
+.nav-toggle:hover {
+  transform: translateY(-2px);
+  border-color: rgba(101, 228, 255, 0.54);
+  background: rgba(101, 228, 255, 0.11);
+}
+
+.icon-link svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.theme-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-hot));
+  box-shadow: inset -5px -5px 0 rgba(7, 8, 18, 0.42);
+}
+
+body.theme-light .theme-dot {
+  box-shadow: inset 5px 0 0 rgba(255, 255, 255, 0.82);
+}
+
+.nav-toggle {
+  display: none;
+  justify-self: end;
+}
+
+.nav-toggle span {
+  width: 18px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+}
+
+.section-band {
+  width: min(calc(100% - 32px), var(--max));
+  margin: 0 auto;
+  padding: 96px 0;
+}
+
 .hero {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 80vh;
-    background: linear-gradient(135deg, var(--section-bg) 0%, var(--bg-color) 100%);
-    padding-top: 2rem;
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 76px);
+  padding: 44px max(16px, calc((100vw - var(--max)) / 2)) 32px;
+  overflow: hidden;
 }
 
-.hero-content {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(101, 228, 255, 0.42), transparent);
 }
 
-.hero-text {
-    flex: 1 1 55%;
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
 }
 
-.hero-text h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+.hero-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(340px, 0.88fr) minmax(420px, 1fr);
+  align-items: center;
+  gap: 58px;
+  min-height: calc(100vh - 152px);
 }
 
-.accent {
-    color: var(--accent-color);
+.hero-visual {
+  position: relative;
+  min-height: 560px;
+  display: grid;
+  place-items: end center;
+  isolation: isolate;
 }
 
-.hero-text h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    font-weight: normal;
+.hero-visual::before {
+  content: "";
+  position: absolute;
+  inset: 8% 8% 5%;
+  z-index: -2;
+  border: 1px solid rgba(101, 228, 255, 0.17);
+  background:
+    linear-gradient(135deg, rgba(101, 228, 255, 0.12), transparent 50%),
+    linear-gradient(225deg, rgba(255, 92, 122, 0.12), transparent 45%),
+    rgba(255, 255, 255, 0.035);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
 }
 
-.hero-text p {
-    margin-bottom: 1.5rem;
-    max-width: 600px;
+body.theme-light .hero-visual::before {
+  background:
+    linear-gradient(135deg, rgba(0, 107, 184, 0.08), transparent 50%),
+    linear-gradient(225deg, rgba(199, 37, 78, 0.08), transparent 45%),
+    rgba(255, 255, 255, 0.78);
 }
 
-.btn {
-    display: inline-block;
-    background-color: var(--accent-color);
-    color: #fff;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
+.portrait {
+  width: min(88%, 430px);
+  max-height: 540px;
+  object-fit: contain;
+  object-position: bottom center;
+  filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.46));
 }
 
-.btn:hover {
-    background-color: darken(var(--accent-color), 10%);
+body.theme-light .portrait {
+  filter: drop-shadow(0 28px 42px rgba(58, 72, 104, 0.24));
 }
 
-.hero-image {
-    flex: 1 1 40%;
-    text-align: center;
+.portrait-orbit {
+  position: absolute;
+  inset: 42px 8px 18px;
+  z-index: -1;
+  pointer-events: none;
 }
 
-.hero-image img {
-    width: 280px;
-    height: auto;
-    border-radius: 50%;
-    border: 4px solid var(--accent-color);
+.portrait-orbit span {
+  position: absolute;
+  border: 1px solid rgba(101, 228, 255, 0.22);
+  border-radius: 50%;
+  transform: rotate(-10deg);
 }
 
-/* Sections */
-.section {
-    padding: 4rem 0;
-    background-color: var(--section-bg);
+.portrait-orbit span:nth-child(1) {
+  inset: 12% 7% 18%;
 }
 
-.dark-section {
-    background-color: var(--dark-section-bg);
-    color: var(--dark-text);
+.portrait-orbit span:nth-child(2) {
+  inset: 23% 18% 28%;
+  border-color: rgba(255, 92, 122, 0.24);
 }
 
-.section h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 2rem;
+.portrait-orbit span:nth-child(3) {
+  inset: 32% 27% 38%;
+  border-color: rgba(92, 240, 170, 0.22);
 }
 
-/* Skills */
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+.status-card {
+  position: absolute;
+  display: grid;
+  gap: 0;
+  min-width: 168px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(10, 14, 28, 0.78);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.26);
+  backdrop-filter: blur(12px);
 }
 
-.skill-item {
-    background-color: var(--bg-color);
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+body.theme-light .status-card {
+  background: rgba(255, 255, 255, 0.86);
 }
 
-.skill-item:hover {
-    transform: translateY(-5px);
+.status-card strong {
+  color: var(--text);
+  font-size: 0.9rem;
 }
 
-.skill-item h3 {
-    color: var(--accent-color);
-    margin-bottom: 0.5rem;
+.status-card span {
+  color: var(--muted);
+  font-size: 0.76rem;
 }
 
-/* Projects */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+.status-card-top {
+  top: 92px;
+  left: 0;
 }
 
-.project-card {
-    background-color: var(--bg-color);
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+.status-card-bottom {
+  right: 0;
+  bottom: 72px;
 }
 
-.project-card:hover {
-    transform: translateY(-5px);
+.hero-copy {
+  max-width: 700px;
 }
 
-.project-card h3 {
-    color: var(--accent-color);
-    margin-bottom: 0.5rem;
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--accent);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 0;
 }
 
-/* Experience */
+.hero-copy h1,
+.section-heading h2,
+.contact-panel h2 {
+  margin: 0;
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+
+.hero-copy h1 {
+  max-width: 720px;
+  font-size: 4.8rem;
+}
+
+.hero-lede {
+  margin: 26px 0 0;
+  max-width: 650px;
+  color: var(--muted);
+  font-size: 1.08rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 34px 0 0;
+}
+
+.button {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 800;
+  border: 1px solid transparent;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.button-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: #06111f;
+}
+
+body.theme-light .button-primary {
+  color: #ffffff;
+}
+
+.button-secondary {
+  color: var(--text);
+  border-color: var(--border);
+  background: rgba(255, 255, 255, 0.055);
+}
+
+body.theme-light .button-secondary {
+  background: #ffffff;
+}
+
+.quick-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 36px;
+  max-width: 620px;
+}
+
+.quick-stats div {
+  min-height: 92px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+body.theme-light .quick-stats div {
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.quick-stats strong {
+  display: block;
+  color: var(--text);
+  font-size: 1.45rem;
+  line-height: 1.1;
+}
+
+.quick-stats span {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.section-heading {
+  max-width: 760px;
+  margin-bottom: 34px;
+}
+
+.section-heading.compact {
+  max-width: 680px;
+}
+
+.section-heading h2 {
+  font-size: 3rem;
+}
+
+.about-band,
+.resume-band,
+.projects-band,
+.certificate-band,
+.contact-band {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.theme-light .about-band,
+body.theme-light .resume-band,
+body.theme-light .projects-band,
+body.theme-light .certificate-band,
+body.theme-light .contact-band {
+  border-top-color: rgba(15, 23, 42, 0.08);
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+  gap: 34px;
+  align-items: start;
+}
+
+.about-layout > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.skill-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-cloud span {
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 750;
+}
+
+body.theme-light .skill-cloud span {
+  background: #ffffff;
+}
+
 .timeline {
-    position: relative;
-    padding-left: 2rem;
+  display: grid;
+  gap: 18px;
+  position: relative;
 }
 
-.timeline:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background-color: var(--accent-color);
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 170px;
+  width: 1px;
+  background: linear-gradient(var(--accent), var(--accent-hot));
 }
 
 .timeline-item {
-    margin-bottom: 2rem;
-    position: relative;
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 42px;
+  align-items: start;
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.timeline-marker {
-    position: absolute;
-    left: -14px;
-    top: 0;
-    width: 12px;
-    height: 12px;
-    background-color: var(--accent-color);
-    border-radius: 50%;
+.timeline-date {
+  color: var(--accent);
+  font-size: 0.88rem;
+  font-weight: 850;
+  padding-top: 20px;
+  text-align: right;
 }
 
-.timeline-content {
-    background-color: var(--bg-color);
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.timeline-card,
+.project-card,
+.cert-card,
+.contact-panel {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
 }
 
-.timeline-content h3 {
-    margin-bottom: 0.25rem;
-    color: var(--accent-color);
+.timeline-card {
+  padding: 24px;
 }
 
-.time {
-    font-size: 0.9rem;
-    color: var(--accent-color);
-    margin-bottom: 0.5rem;
-    display: block;
+.timeline-card h3,
+.project-card h3,
+.cert-card h3 {
+  margin: 0;
+  color: var(--text);
+  line-height: 1.18;
 }
 
-.timeline-content ul {
-    list-style: disc;
-    padding-left: 1.5rem;
+.timeline-card .meta {
+  margin: 8px 0 14px;
+  color: var(--accent-warm);
+  font-weight: 800;
 }
 
-/* Certifications */
-.cert-list {
-    list-style: none;
-    padding-left: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    align-items: flex-start;
+.timeline-card p,
+.timeline-card li {
+  color: var(--muted);
 }
 
-.cert-list li {
-    padding: 0.75rem 1rem;
-    background-color: var(--bg-color);
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    color: var(--text-color);
+.timeline-card ul {
+  margin: 14px 0 0;
+  padding-left: 20px;
 }
 
-/* Education */
-.education-item {
-    background-color: var(--bg-color);
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.timeline-card li + li {
+  margin-top: 8px;
 }
 
-.education-item h3 {
-    color: var(--accent-color);
-    margin-bottom: 0.5rem;
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
 }
 
-/* Contact */
-.contact-list {
-    list-style: none;
-    padding-left: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+.project-card {
+  min-height: 298px;
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 420ms ease, transform 420ms ease, border-color 160ms ease, background 160ms ease;
 }
 
-.contact-list a {
-    color: var(--accent-color);
-    text-decoration: none;
+.project-card.featured {
+  grid-column: span 2;
 }
 
-.contact-list a:hover {
-    text-decoration: underline;
+.project-card:hover {
+  border-color: rgba(101, 228, 255, 0.42);
 }
 
-/* Footer */
-.footer {
-    background-color: var(--bg-color);
-    padding: 1rem 0;
-    text-align: center;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+.project-kicker {
+  color: var(--accent-green);
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 12px;
 }
 
-.footer p {
-    color: var(--text-color);
+.project-card p {
+  color: var(--muted);
+  margin: 14px 0 0;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-    .hero-content {
-        flex-direction: column;
-        text-align: center;
-    }
-    .hero-image {
-        margin-top: 2rem;
-    }
-    .nav-links {
-        display: none;
-    }
-    .nav-links.active {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background-color: var(--bg-color);
-        width: 200px;
-        padding: 1rem;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    .theme-toggle {
-        margin-left: 1rem;
-8}
+body.theme-light .project-card {
+  background: #ffffff;
+}
 
+body.theme-light .project-card h3 {
+  color: #111827;
+}
 
-//* Begin commented out stray HTML
+body.theme-light .project-card p {
+  color: #334155;
+}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usama Fiaz – AI &amp; ML Engineer</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome for icons (LinkedIn, Email, certifications) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-HoO5T+E8iJp8UhHtZlyjXStKVk/miP/62nCgGdL0c6vEyK1bQ4vI9riFeawjR6em3tMPCJ9I5MHkRLfUIwofTg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script defer src="script.js"></script>
-</head>
-<body>
-    <!-- Navigation bar -->
-    <nav class="navbar">
-        <div class="container nav-content">
-            <div class="logo">Usama Fiaz</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="theme-toggle" id="themeToggle">🌙</div>
-        </div>
-    </nav>
+.text-link {
+  margin-top: auto;
+  display: inline-flex;
+  width: fit-content;
+  color: var(--accent);
+  font-weight: 850;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-top: 18px;
+}
 
-    <!-- Hero Section -->
-    <header id="home" class="hero">
-        <div class="container hero-content">
-            <div class="hero-text">
-                <h1>Hi, I'm <span class="accent">Usama Fiaz</span></h1>
-                <h2>AI &amp; ML Engineer</h2>
-                <p>
-                    Machine Learning / AI Engineer with hands‑on professional experience in SQL, Python-based data
-                    workflows, data validation, and application support at Techlogix. Passionate about ML and AI,
-                    currently self‑learning and working on projects that revolve around prompt engineering, data
-                    preparation, automation and LLM workflows.
-                </p>
-                <a href="#projects" class="btn">View Projects</a>
-                <!-- Quick access social icons (email and LinkedIn) under the call‑to‑action button -->
-                <div class="social-icons">
-                    <a href="mailto:usama20010101@gmail.com" target="_blank" title="Send me an email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/usama2001" target="_blank" rel="noopener" title="Visit my LinkedIn profile">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="profile.png" alt="Usama Fiaz">
-            </div>
-        </div>
-    </header>
+body.theme-light .text-link {
+  color: #005fa3;
+}
 
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <h2>About Me</h2>
-            <p>
-                I am a Machine Learning / AI Engineer candidate with solid experience in SQL and Python. At
-                Techlogix, I work on SQL‑driven enterprise applications, focusing on data extraction and
-                reconciliation using Oracle SQL/PLSQL. I'm dedicated to continuous learning and have completed
-                multiple AI/ML certifications. I enjoy building ML workflows and exploring practical NLP use cases,
-                from intent detection and text classification to summarization and AI agents.
-            </p>
-        </div>
-    </section>
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
 
-    <!-- Skills Section -->
-    <section id="skills" class="section">
-        <div class="container">
-            <h2>Core Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-item">
-                    <h3>Machine Learning</h3>
-                    <p>Supervised Learning, Regression, Classification, Model Evaluation, Feature Engineering,
-                        Predictive Modeling</p>
-                </div>
-                <div class="skill-item">
-                    <h3>NLP &amp; LLMs</h3>
-                    <p>Intent Detection, Text Classification, Summarization, Prompt Engineering, RAG Concepts, AI
-                        Agents, LangGraph</p>
-                </div>
-                <div class="skill-item">
-                    <h3>Fine‑Tuning Exposure</h3>
-                    <p>TensorFlow, Hugging Face, LoRA/QLoRA, LLaMA/Mistral Familiarity, Dataset Preparation</p>
-                </div>
-                <div class="skill-item">
-                    <h3>Data Engineering</h3>
-                    <p>SQL, Oracle SQL/PLSQL, ETL Concepts, Data Cleaning, Data Validation, Data Pipelines, Reporting</p>
-                </div>
-                <div class="skill-item">
-                    <h3>Programming &amp; Tools</h3>
-                    <p>Python, Pandas, NumPy, Matplotlib, Power BI, Excel, Git, APIs, Automation Workflows</p>
-                </div>
-            </div>
-        </div>
-    </section>
+.cert-card {
+  min-height: 122px;
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  padding: 18px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 420ms ease, transform 420ms ease, border-color 160ms ease;
+}
 
-    <!-- Projects Section -->
-    <section id="projects" class="section dark-section">
-        <div class="container">
-            <h2>Selected Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>Prompt Engineering &amp; AI Agents</h3>
-                    <p>Developed prompt‑based workflows and AI agent concepts for structured task automation,
-                        information extraction and response generation.</p>
-                </div>
-                <div class="project-card">
-                    <h3>NLP Classification &amp; Summarization</h3>
-                    <p>Worked on text preprocessing, classification logic and summarization tasks to implement practical
-                        NLP pipelines with LLMs.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Data Cleaning &amp; Analytics Automation</h3>
-                    <p>Built Python and SQL workflows to clean datasets, transform records, validate outputs and
-                        generate reporting‑ready data.</p>
-                </div>
-                <div class="project-card">
-                    <h3>ML Model Practice</h3>
-                    <p>Created supervised learning models for regression and classification, focusing on model
-                        performance, evaluation metrics and interpretability.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+.cert-card:hover {
+  border-color: rgba(255, 190, 85, 0.42);
+}
 
-    <!-- Experience Section -->
-    <section id="experience" class="section">
-        <div class="container">
-            <h2>Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Application Consultant</h3>
-                        <span class="time">Techlogix | May 2024 – Present | Lahore, Pakistan</span>
-                        <ul>
-                            <li>Write and optimize Oracle SQL/PLSQL queries for data extraction, validation and reconciliation.</li>
-                            <li>Support ETL-style data movement, mapping and transformation across enterprise systems.</li>
-                            <li>Collaborate with technical and functional teams to debug issues, prepare fixes and test changes.</li>
-                            <li>Apply automation-focused thinking to reduce manual checks and improve data validation workflows.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                       <h3>Freelance AI, ML &amp; Data Projects</h3>
-                        <span class="time">Self‑Employed | 2021 – Present | Remote</span>
-                        <ul>
-                            <li>Develop Python-based projects for data cleaning, analysis, automation, dashboards and ML experimentation.</li>
-                            <li>Practice ML workflows including dataset preparation, feature selection, classification, regression and model evaluation.</li>
-                            <li>Explore NLP and LLM use cases such as prompt engineering, text classification, summarization and AI agents.</li>
-                            <li>Work with GenAI concepts like Retrieval Augmented Generation (RAG) and LangGraph‑based agents.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+.cert-card p {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
 
-    <!-- Certifications Section -->
-    <section id="certifications" class="section dark-section">
-        <div class="container">
-            <h2>Certifications</h2>
-            <ul class="cert-list">
-                <!-- Micro1 certification: show icon without link -->
-                <li>
-                    <!-- Unlinked icon for Micro1 certification -->
-                    <span class="cert-icon"><i class="fas fa-microchip" aria-hidden="true"></i></span>
-                    <span>Micro1 – Certified AI Engineer, Sep&nbsp;2025</span>
-                </li>
-                <!-- Advanced Machine Learning: show icon without link -->
-                <li>
-                    <span class="cert-icon"><i class="fas fa-brain" aria-hidden="true"></i></span>
-                    <span>Advanced Machine Learning – DeepLearning.AI</span>
-                </li>
-                <!-- ChatGPT Prompt Engineering: icon links to certificate page -->
-                <li>
-                    <a href="https://learn.deeplearning.ai/accomplishments/2c77cfe1-b6f2-429a-a809-b45db0c26c36?usp=sharing" target="_blank" rel="noopener" class="cert-icon" title="View certificate">
-                        <i class="fas fa-comment-dots" aria-hidden="true"></i>
-                    </a>
-                    <span>ChatGPT Prompt Engineering for Developers</span>
-                </li>
-                <!-- Supervised Machine Learning: icon links to certificate page -->
-                <li>
-                    <a href="https://learn.deeplearning.ai/certificates/1f9d08b7-58db-4319-85fb-fe9a8b763de4?usp=sharing" target="_blank" rel="noopener" class="cert-icon" title="View certificate">
-                        <i class="fas fa-chart-line" aria-hidden="true"></i>
-                    </a>
-                    <span>Supervised Machine Learning: Regression and Classification</span>
-                </li>
-                <!-- HackerRank certification: icon links to certificate page -->
-                <li>
-                    <a href="https://www.hackerrank.com/profile/usama20010101" target="_blank" rel="noopener" class="cert-icon" title="View certificate">
-                        <i class="fab fa-hackerrank" aria-hidden="true"></i>
-                    </a>
-                    <span>HackerRank – Verified Software Engineer</span>
-                </li>
-            </ul>
-       </body>
-       </div>
-    </section>
+.cert-logo {
+  width: 62px;
+  height: 62px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 0.86rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  transition: transform 160ms ease, filter 160ms ease;
+}
 
-    <!-- Education Section -->
-    <section id="education" class="section">
-        <div class="container">
-            <h2>Education</h2>
-            <div class="education-item">
-                <h3>BSc Computer Engineering</h3>
-                <p>University of Engineering and Technology (UET), Lahore | Sep 2020 – Jun 2024</p>
-            </div>
-        </div>
-    </section>
+.linked-logo:hover,
+.linked-logo:focus-visible {
+  transform: translateY(-2px);
+  filter: brightness(1.12);
+  outline: none;
+}
 
-    <!-- Contact Section -->
-    <section id="contact" class="section dark-section">
-        <div class="container">
-            <h2>Contact</h2>
-            <p>If you'd like to get in touch, feel free to reach out via email or LinkedIn.</p>
-            <ul class="contact-list">
-                <li>
-                    <a href="mailto:usama20010101@gmail.com" class="contact-icon" title="Send me an email">
-                        <i class="fas fa-envelope"></i>
-                        <span>Email</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.linkedin.com/in/usama2001" target="_blank" rel="noopener" class="contact-icon" title="Visit my LinkedIn profile">
-                        <i class="fab fa-linkedin"></i>
-                        <span>LinkedIn</span>
-                    </a>
-                </li>
-                <li>
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Lahore, Pakistan</span>
-                </li>
-            </ul>
-        </div>
-    </section>
+.micro-logo {
+  background: linear-gradient(135deg, #5cf0aa, #176d65);
+}
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>© 2026 Usama Fiaz. All rights reserved.</p>
-        </div>
-    </footer>
+.dl-logo {
+  background: linear-gradient(135deg, #ffbe55, #ff5c7a);
+}
 
-</body>
-</html>/<!-- Contact Section
-    */
-.cert-icon {
-    margin-right: 0.5rem;
-    color: var(--accent-color);
+.hr-logo {
+  background: linear-gradient(135deg, #2ec866, #0d7d45);
+}
+
+.contact-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
+  gap: 34px;
+  align-items: center;
+  padding: 34px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 420ms ease, transform 420ms ease;
+  background:
+    linear-gradient(135deg, rgba(101, 228, 255, 0.11), transparent 48%),
+    linear-gradient(225deg, rgba(255, 92, 122, 0.10), transparent 45%),
+    var(--surface);
+}
+
+.contact-panel h2 {
+  font-size: 2.9rem;
+}
+
+.contact-panel p:not(.eyebrow) {
+  margin: 16px 0 0;
+  color: var(--muted);
+}
+
+.contact-actions {
+  display: grid;
+  gap: 12px;
+}
+
+.contact-link {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  min-height: 78px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.055);
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+body.theme-light .contact-link {
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.contact-link:hover,
+.contact-link:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(101, 228, 255, 0.48);
+  outline: none;
 }
 
 .contact-icon {
-    margin-right: 0.5rem;
-    color: var(--accent-color);
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  color: #06111f;
+  background: linear-gradient(135deg, var(--accent), var(--accent-warm));
 }
 
-/* Ensure project card text is visible in dark sections */
-.dark-section .project-card {
-    color: var(--text-color);
-    background-color: var(--bg-color);
+.contact-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
 }
 
-.dark-section .project-card h3 {
-    color: var(--accent-color);
+.contact-link strong,
+.contact-link small {
+  display: block;
 }
 
-.dark-section .project-card p {
-    color: var(--text-color);
+.contact-link strong {
+  color: var(--text);
+}
+
+.contact-link small {
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.site-footer {
+  width: min(calc(100% - 32px), var(--max));
+  min-height: 84px;
+  margin: 0 auto;
+  padding: 24px 0;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  color: var(--muted);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 850;
+}
+
+.section-heading,
+.project-card,
+.cert-card,
+.contact-panel {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 420ms ease, transform 420ms ease;
+}
+
+@media (max-width: 1060px) {
+  .nav-shell {
+    grid-template-columns: auto auto auto;
+  }
+
+  .nav-toggle {
+    display: grid;
+  }
+
+  .nav-panel {
+    position: absolute;
+    top: 76px;
+    left: 16px;
+    right: 16px;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px;
+    background: var(--surface-solid);
+    box-shadow: var(--shadow);
+  }
+
+  .nav-panel.is-open {
+    display: flex;
+  }
+
+  .nav-panel a {
+    padding: 12px;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .hero-copy {
+    order: -1;
+  }
+
+  .hero-copy h1 {
+    font-size: 3.6rem;
+  }
+
+  .hero-visual {
+    min-height: 500px;
+  }
+
+  .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .nav-shell {
+    width: min(calc(100% - 24px), var(--max));
+    min-height: 68px;
+    gap: 10px;
+  }
+
+  .brand {
+    min-width: 0;
+  }
+
+  .brand-copy small {
+    display: none;
+  }
+
+  .nav-panel {
+    top: 68px;
+  }
+
+  .icon-link {
+    display: none;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 34px;
+  }
+
+  .hero-grid {
+    min-height: auto;
+  }
+
+  .hero-copy h1 {
+    font-size: 2.65rem;
+  }
+
+  .hero-lede {
+    font-size: 1rem;
+  }
+
+  .quick-stats,
+  .about-layout,
+  .cert-grid,
+  .contact-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-stats div {
+    min-height: 74px;
+  }
+
+  .hero-visual {
+    min-height: 440px;
+  }
+
+  .portrait {
+    width: min(94%, 340px);
+  }
+
+  .status-card {
+    min-width: 142px;
+    padding: 10px 12px;
+  }
+
+  .status-card-top {
+    top: 58px;
+  }
+
+  .status-card-bottom {
+    bottom: 40px;
+  }
+
+  .section-band {
+    width: min(calc(100% - 24px), var(--max));
+    padding: 72px 0;
+  }
+
+  .section-heading h2,
+  .contact-panel h2 {
+    font-size: 2.15rem;
+  }
+
+  .timeline::before {
+    left: 0;
+  }
+
+  .timeline-item {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding-left: 22px;
+  }
+
+  .timeline-date {
+    text-align: left;
+    padding-top: 0;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card.featured {
+    grid-column: auto;
+  }
+
+  .project-card {
+    min-height: 0;
+  }
+
+  .site-footer {
+    width: min(calc(100% - 24px), var(--max));
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 460px) {
+  .brand-copy span {
+    display: none;
+  }
+
+  .hero-copy h1 {
+    font-size: 2.25rem;
+  }
+
+  .hero-actions {
+    align-items: stretch;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .hero-visual {
+    min-height: 390px;
+  }
+
+  .status-card {
+    position: static;
+    width: 100%;
+    margin: 8px 0;
+  }
+
+  .hero-visual {
+    align-content: end;
+  }
+
+  .portrait-orbit {
+    inset: 40px 0 76px;
+  }
+
+  .cert-card {
+    grid-template-columns: 58px minmax(0, 1fr);
+  }
+
+  .cert-logo {
+    width: 52px;
+    height: 52px;
+    font-size: 0.74rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
