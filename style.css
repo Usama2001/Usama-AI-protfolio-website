@@ -336,7 +336,7 @@ body.theme-light .theme-dot {
   background:
     linear-gradient(135deg, rgba(101, 228, 255, 0.12), transparent 50%),
     linear-gradient(225deg, rgba(255, 92, 122, 0.12), transparent 45%),
-    rgba(255, 255, 255, 0.035);
+    rgba(255, 255, 255, 0.055);
   border-radius: 8px;
   box-shadow: var(--shadow);
 }
@@ -349,11 +349,14 @@ body.theme-light .hero-visual::before {
 }
 
 .portrait {
-  width: min(88%, 430px);
-  max-height: 540px;
-  object-fit: contain;
-  object-position: bottom center;
+  width: min(88%, 440px);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center top;
   border-radius: 8px;
+  background:
+    radial-gradient(circle at 48% 38%, rgba(101, 228, 255, 0.18), transparent 36%),
+    linear-gradient(135deg, rgba(101, 228, 255, 0.10), rgba(255, 92, 122, 0.08));
   filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.48));
 }
 
@@ -450,7 +453,15 @@ body.theme-light .status-card {
 
 .hero-copy h1 {
   max-width: 740px;
-  font-size: 4.75rem;
+  font-size: 4.35rem;
+}
+
+.hero-copy h1 span {
+  display: block;
+  margin-top: 14px;
+  color: var(--accent);
+  font-size: 0.44em;
+  line-height: 1.14;
 }
 
 .hero-lede {
