@@ -1,20 +1,17 @@
 # Usama AI Portfolio Website
 
-Static portfolio website for Usama Fiaz, built for GitHub Pages.
+Static AI/ML portfolio website for Usama Fiaz.
 
 ## Sections
 
-- AI/data focused hero with portrait
-- About and core skills
-- Resume timeline from the provided CV
-- Projects with visible light-mode text
-- Certificate cards with linked logos where links were provided
-- Email and LinkedIn contact logo links
+- AI-focused hero with updated Stockholm availability note
+- About and expanded skills
+- Working Experience
+- Education
+- Project posters for heart disease prediction and PSL PySpark data engineering
+- Certificate cards in the requested order
+- Email and LinkedIn contact links
 
 ## Deployment
 
-The site is ready for GitHub Pages from the `main` branch root.
-
-Expected URL:
-
-`https://usama2001.github.io/Usama-AI-protfolio-website/`
+The site is built as a static website and can run from the repository root.
